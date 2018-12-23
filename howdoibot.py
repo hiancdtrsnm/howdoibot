@@ -19,9 +19,9 @@ if 'pythonanywhere' in info['URL']:
 CERT = 'server.crt'
 CERT_KEY = 'server.key'
 bot = telepot.Bot('{AUTHORIZATION_TOKEN}'.format(
-    **info), certificate=open(CERT, 'rb'))
+    **info))
 bot.setWebhook(
-    "https://{URL}/{SECRET_NUMBER}".format(**info), max_connections=1)
+    "https://{URL}/{SECRET_NUMBER}".format(**info), max_connections=1, certificate=open(CERT, 'rb'))
 
 app = Flask(__name__)
 secret = "{SECRET_NUMBER}".format(**info)
