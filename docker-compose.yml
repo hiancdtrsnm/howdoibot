@@ -1,0 +1,15 @@
+version: '2'
+services:
+  howdoibot:
+    build: .
+    ports:
+      - "8443:5000"
+
+
+    restart: always
+
+    command: python howdoibot.py
+
+
+    volumes:
+      - .:/home/howdoibot
