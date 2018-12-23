@@ -3,8 +3,9 @@ import telepot
 import urllib3
 import json
 from howdoi.howdoi import howdoi
+from path import Path
 
-config_path = 'config.json'
+config_path = Path(__file__).parent / 'config.json'
 info = json.load(open(config_path))
 
 if 'pythonanywhere' in info['URL']:
