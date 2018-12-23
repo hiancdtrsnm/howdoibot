@@ -21,9 +21,10 @@ bot.setWebhook(
     "https://{URL}/{SECRET_NUMBER}".format(**info), max_connections=1)
 
 app = Flask(__name__)
-
+CERT = 'server.crt'
+CERT_KEY = 'server.key'
 secret = "{SECRET_NUMBER}".format(**info)
-
+context = (CERT, CERT_KEY)
 
 howdoi_args = {
     'num_answers': 1,
@@ -50,4 +51,4 @@ def telegram_webhook():
 
 if __name__ == "__main__":
     print(info)
-    app.run(port=5000, debug=True, host='0.0.0.0')
+    app.run(port=5000, ssl_context=context, debug=True, host='0.0.0.0')

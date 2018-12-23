@@ -13,4 +13,4 @@ COPY howdoibot.py howdoibot.py
 
 # run-time configuration
 # EXPOSE 5000
-ENTRYPOINT ["python howdoibot.py"]
+# ENTRYPOINT ["python howdoibot.py"]
