@@ -16,13 +16,14 @@ if 'pythonanywhere' in info['URL']:
     telepot.api._onetime_pool_spec = (urllib3.ProxyManager, dict(
         proxy_url=proxy_url, num_pools=1, maxsize=1, retries=False, timeout=30))
 
-bot = telepot.Bot('{AUTHORIZATION_TOKEN}'.format(**info))
+CERT = 'server.crt'
+CERT_KEY = 'server.key'
+bot = telepot.Bot('{AUTHORIZATION_TOKEN}'.format(
+    **info), certificate=open(CERT, 'rb'))
 bot.setWebhook(
     "https://{URL}/{SECRET_NUMBER}".format(**info), max_connections=1)
 
 app = Flask(__name__)
-CERT = 'server.crt'
-CERT_KEY = 'server.key'
 secret = "{SECRET_NUMBER}".format(**info)
 context = (CERT, CERT_KEY)
 
