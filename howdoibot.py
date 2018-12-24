@@ -4,7 +4,9 @@ import urllib3
 import json
 from howdoi.howdoi import howdoi
 from path import Path
+from tinydb import TinyDB, Query
 
+db = TinyDB('messages.json')
 
 config_path = Path(__file__).parent / 'config.json'
 info = json.load(open(config_path))
@@ -39,7 +41,10 @@ howdoi_args = {
 def telegram_webhook():
     update = request.get_json()
     app.logger.info(update)
-    if "message" in update:
+    msg = Query()
+    if "message" in update and len(db.search(db.message_id == update['message']['message_id'])) == 0:
+
+        db.insert(update['message'])
         text = update["message"]["text"]
         args = {
             'query': text.split(' ')
