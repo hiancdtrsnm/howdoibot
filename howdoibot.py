@@ -5,6 +5,7 @@ import json
 from howdoi.howdoi import howdoi
 from path import Path
 
+
 config_path = Path(__file__).parent / 'config.json'
 info = json.load(open(config_path))
 
@@ -37,6 +38,7 @@ howdoi_args = {
 @app.route('/{}'.format(secret), methods=["POST"])
 def telegram_webhook():
     update = request.get_json()
+    app.logger.info(update)
     if "message" in update:
         text = update["message"]["text"]
         args = {
@@ -46,7 +48,11 @@ def telegram_webhook():
         args.update(howdoi_args)
         text = howdoi(args)
         chat_id = update["message"]["chat"]["id"]
-        bot.sendMessage(chat_id, "```\n{}```".format(text), parse_mode='Markdown')
+        try:
+            bot.sendMessage(chat_id, "```\n{}```".format(text), parse_mode='Markdown')
+
+        except telepot.exception.BotWasBlockedError as e:
+            app.logger.error(str(e))
     return "OK"
 
 
