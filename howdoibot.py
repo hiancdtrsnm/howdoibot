@@ -5,6 +5,7 @@ import json
 from howdoi.howdoi import howdoi
 from path import Path
 from tinydb import TinyDB, Query
+from datetime import timedelta, datetime
 
 db = TinyDB('messages.json')
 
@@ -42,7 +43,7 @@ def telegram_webhook():
     update = request.get_json()
     app.logger.info(update)
     msg = Query()
-    if "message" in update and len(db.search(db.message_id == update['message']['message_id'])) == 0:
+    if "message" in update and timedelta(minutes=5) > (datetime.now() - datetime.fromtimestamp(update['message']['date'])):
 
         db.insert(update['message'])
         text = update["message"]["text"]
