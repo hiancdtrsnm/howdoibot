@@ -1,7 +1,9 @@
 version: '2'
 services:
   howdoibot:
-    build: .
+    image: matcom/howdoi
+    build: 
+      context: "."
     ports:
       - "8443:5000"
 

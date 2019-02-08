@@ -7,3 +7,14 @@ Find in **Telegram** has [howdoi](t.me/howdo_ibot)
 Comming (i hope soon)
 * Inline bot
 * Select number of responses
+
+
+# Deploy
+
+As simple as:
+```bash
+docker-compose up
+```
+
+
+enjoy!
