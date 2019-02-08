@@ -11,6 +11,8 @@ Comming (i hope soon)
 
 # Deploy
 
+First configure your's config.json
+
 As simple as:
 ```bash
 docker-compose up
