@@ -1,0 +1,5 @@
+{
+    "url": "https://bot.url:port",
+    "AUTHORIZATION_TOKEN": "AUTHORIZATION_TOKEN",
+    "SECRET_NUMBER": "SECRET_NUMBER"
+}
