@@ -9,7 +9,7 @@ itsdangerous==1.1.0
 Jinja2==2.10
 lxml==4.2.5
 MarkupSafe==1.1.0
-Pygments==2.3.1
+Pygments==2.7.4
 pyquery==1.4.0
 requests==2.21.0
 requests-cache==0.4.13
